@@ -6,18 +6,18 @@ class PM25:
     def __init__(self, rx_pin, reset_pin = None):
         self._buffer = bytearray(32)
         self.aqi_reading = {
-            "pm10 standard": None,
-            "pm25 standard": None,
-            "pm100 standard": None,
-            "pm10 env": None,
-            "pm25 env": None,
-            "pm100 env": None,
-            "particles 03um": None,
-            "particles 05um": None,
-            "particles 10um": None,
-            "particles 25um": None,
-            "particles 50um": None,
-            "particles 100um": None,
+            "pm10-std": None,
+            "pm25-std": None,
+            "pm100-std": None,
+            "pm10-env": None,
+            "pm25-env": None,
+            "pm100-env": None,
+            "prt-03um": None,
+            "prt-05um": None,
+            "prt-10um": None,
+            "prt-25um": None,
+            "prt-50um": None,
+            "prt-100um": None,
         }
         
         self._pi = pigpio.pi()
@@ -71,18 +71,18 @@ class PM25:
 
         # unpack data
         (
-            self.aqi_reading["pm10 standard"],
-            self.aqi_reading["pm25 standard"],
-            self.aqi_reading["pm100 standard"],
-            self.aqi_reading["pm10 env"],
-            self.aqi_reading["pm25 env"],
-            self.aqi_reading["pm100 env"],
-            self.aqi_reading["particles 03um"],
-            self.aqi_reading["particles 05um"],
-            self.aqi_reading["particles 10um"],
-            self.aqi_reading["particles 25um"],
-            self.aqi_reading["particles 50um"],
-            self.aqi_reading["particles 100um"],
+            self.aqi_reading["pm10-std"],
+            self.aqi_reading["pm25-std"],
+            self.aqi_reading["pm100-std"],
+            self.aqi_reading["pm10-env"],
+            self.aqi_reading["pm25-env"],
+            self.aqi_reading["pm100-env"],
+            self.aqi_reading["prt-03um"],
+            self.aqi_reading["prt-05um"],
+            self.aqi_reading["prt-10um"],
+            self.aqi_reading["prt-25um"],
+            self.aqi_reading["prt-50um"],
+            self.aqi_reading["prt-100um"],
         ) = struct.unpack(">HHHHHHHHHHHH", self._buffer[4:28])
 
         return self.aqi_reading
